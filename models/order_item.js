@@ -27,19 +27,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      item: {
-        type: DataTypes.STRING,
-      },
-      option_id: {
+      item_id: {
         type: DataTypes.BIGINT,
-      },
-      price: {
-        type: DataTypes.BIGINT,
-      },
-      type: {
-        type: DataTypes.ENUM,
       },
       amount: {
+        type: DataTypes.BIGINT,
+      },
+      state: {
         type: DataTypes.BIGINT,
       },
     },

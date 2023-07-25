@@ -27,8 +27,7 @@ module.exports = {
         type: Sequelize.BIGINT,
       },
       type: {
-        type: Sequelize.ENUM,
-        values: ["coffee", "juice", "food"],
+        type: Sequelize.ENUM(["coffee", "juice", "food"]),
       },
       amount: {
         type: Sequelize.BIGINT,

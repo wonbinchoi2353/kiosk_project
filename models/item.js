@@ -37,8 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
       },
       type: {
-        type: DataTypes.ENUM,
-        values: ["coffee", "juice", "food"],
+        type: DataTypes.ENUM(["coffee", "juice", "food"]),
       },
       amount: {
         type: DataTypes.BIGINT,

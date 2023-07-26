@@ -17,8 +17,19 @@ class ItemsController {
       } else if (error.message === "타입이 틀렸다!") {
         return res.status(403).json({ message: "알맞은 타입을 지정해주세요." });
       }
-
       res.status(500).json({ errorMessage: "상품 생성에 실패했습니다." });
+    }
+  };
+
+  getItems = async (req, res) => {
+    try {
+      const { type } = req.body;
+      const items = await this.itemsService.getItems(type);
+
+      res.status(200).json({ items });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ errorMessage: "상품 조회에 실패했습니다." });
     }
   };
 }

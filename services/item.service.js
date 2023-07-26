@@ -23,6 +23,10 @@ class ItemsService {
     }
     await this.itemsRepository.postItem(name, price, type);
   };
+
+  getItems = async (type) => {
+    return await this.itemsRepository.getItems(type);
+  };
 }
 
 module.exports = ItemsService;

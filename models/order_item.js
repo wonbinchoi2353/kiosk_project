@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
       },
       state: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.BOOLEAN,
       },
     },
     {

@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       option_id: {
         type: DataTypes.BIGINT,
+        defaultValue: 0,
       },
       price: {
         type: DataTypes.BIGINT,
@@ -41,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       amount: {
         type: DataTypes.BIGINT,
+        defaultValue: 0,
       },
     },
     {

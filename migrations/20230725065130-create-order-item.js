@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.BIGINT,
       },
       state: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.BOOLEAN,
       },
     });
   },

@@ -22,6 +22,7 @@ module.exports = {
       },
       option_id: {
         type: Sequelize.BIGINT,
+        defaultValue: 0,
       },
       price: {
         type: Sequelize.BIGINT,
@@ -31,6 +32,7 @@ module.exports = {
       },
       amount: {
         type: Sequelize.BIGINT,
+        defaultValue: 0,
       },
     });
   },

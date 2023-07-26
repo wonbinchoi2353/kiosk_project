@@ -6,19 +6,21 @@ module.exports = {
       item_id: {
         type: Sequelize.INTEGER,
       },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
       order_custormer_id: {
         type: Sequelize.BIGINT,
       },
       amount: {
         type: Sequelize.BIGINT,
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
       },
     });
   },

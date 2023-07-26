@@ -8,6 +8,7 @@ class Server {
     this.itemsRouter = itemsRouter;
   }
   openServer = (app, PORT) => {
+    app.use(express.json());
     app.use("/api", [this.itemsRouter]);
 
     app.listen(PORT, () => {

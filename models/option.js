@@ -19,14 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         type: DataTypes.BIGINT,
       },
-      created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.DATE,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.DATE,
-      },
       extra_price: {
         type: DataTypes.BIGINT,
       },
@@ -35,6 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       hot: {
         type: DataTypes.BOOLEAN,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

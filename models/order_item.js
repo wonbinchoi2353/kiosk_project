@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
       },
       state: {
-        type: DataTypes.ENUM(["ORDERED", "PENDING", "COMPLETED", "CANCELED"]),
+        type: DataTypes.ENUM([0, 1, 2, 3]),
         defaultValue: 0,
       },
       createdAt: {

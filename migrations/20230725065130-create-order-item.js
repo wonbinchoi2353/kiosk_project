@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.BIGINT,
       },
       state: {
-        type: Sequelize.ENUM(["ORDERED", "PENDING", "COMPLETED", "CANCELED"]),
+        type: Sequelize.ENUM([0, 1, 2, 3]),
         defaultValue: 0,
       },
       createdAt: {

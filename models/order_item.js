@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      itemId: {
+      item_id: {
         type: DataTypes.BIGINT,
       },
       amount: {

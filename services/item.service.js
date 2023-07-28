@@ -1,6 +1,6 @@
 const ItemsRepository = require("../repositories/item.repository");
 const IO = require("../readline/readline");
-const itemType = require("../constants/constant");
+const { itemType } = require("../constants/constant");
 
 class ItemsService {
   itemsRepository = new ItemsRepository();

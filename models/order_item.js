@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Item, {
+        foreignKey: "item_id",
+        onDelete: "CASCADE",
+      });
     }
   }
   Order_item.init(
@@ -26,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
       },
       state: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.ENUM(["ORDERED", "PENDING", "COMPLETED", "CANCELED"]),
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,

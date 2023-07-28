@@ -10,12 +10,13 @@
 
 ## API
 
-| NAME      | METHOD   | URL                  |
-| --------- | -------- | -------------------- |
-| 상품 추가 | `post`   | api/items            |
-| 상품 조회 | `get`    | api/items/?key=value |
-| 상품 삭제 | `delete` | api/items/:item_id   |
-| 상품 수정 | `put`    | api/items/:item_id   |
+| NAME      | METHOD   | URL                           |
+| --------- | -------- | ----------------------------- |
+| 상품 추가 | `post`   | api/items                     |
+| 상품 조회 | `get`    | api/items/?key=value          |
+| 상품 삭제 | `delete` | api/items/:item_id            |
+| 상품 수정 | `put`    | api/items/:item_id            |
+| 상품 발주 | `post`   | api/items/:item_id/order_item |
 
 ## 추가 기능
 

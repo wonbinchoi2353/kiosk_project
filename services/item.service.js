@@ -1,16 +1,13 @@
 const ItemsRepository = require("../repositories/item.repository");
-
-const itemType = {
-  COFFEE: "coffee",
-  JUICE: "juice",
-  FOOD: "food",
-};
+const IO = require("../readline/readline");
+const itemType = require("../constants/constant");
 
 class ItemsService {
   itemsRepository = new ItemsRepository();
+  io = new IO();
 
+  // 상품 생성
   postItem = async (name, price, type) => {
-    // 이름, 가격이 없는 경우 {name}을 입력해주세요 -> {name}이 뭐죠?
     if (!name || !price) {
       throw new Error("이름과 가격이 없다!");
     }
@@ -21,11 +18,52 @@ class ItemsService {
     if (!itemTypeString.includes(type)) {
       throw new Error("타입이 틀렸다!");
     }
-    await this.itemsRepository.postItem(name, price, type);
+
+    const item = await this.itemsRepository.findItemByName(name);
+
+    if (!item) {
+      await this.itemsRepository.createItem(name, price, type);
+    } else {
+      item.amount += 1;
+      await item.save();
+      // throw new Error("상품이 있다!");
+    }
   };
 
+  // 상품 조회
   getItems = async (type) => {
-    return await this.itemsRepository.getItems(type);
+    if (type) {
+      return await this.itemsRepository.getItemsByType(type);
+    } else {
+      return await this.itemsRepository.getAllItems();
+    }
+  };
+
+  // 상품 삭제
+  deleteItem = async (id) => {
+    const item = await this.itemsRepository.getItemsByPk(id);
+    if (item.amount) {
+      // 입력값을 받아 '예'를 반환하면 아이템 삭제
+      const input = await this.io.getInput();
+      if (input === "예") {
+        await this.itemsRepository.deleteItem(id);
+      } else {
+        throw new Error("상품이 그대로 있다!");
+      }
+    }
+  };
+
+  // 상품 수정
+  updateItem = async (id, name, price) => {
+    if (!name) {
+      throw new Error("이름을 입력해주세요");
+    }
+
+    if (price < 0) {
+      throw new Error("알맞은 가격을 입력해주세요");
+    }
+
+    await this.itemsRepository.updateItem(id, name, price);
   };
 }
 

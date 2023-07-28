@@ -11,7 +11,7 @@ class IO {
 
     return new Promise((resolve) => {
       rl.question("삭제하시겠습니까? (예/아니오): ", (answer) => {
-        if (answer.toLowerCase() === "예") {
+        if (answer === "예") {
           // 사용자가 '예'라고 대답한 경우에만 로직을 실행
           input = answer;
           console.log("데이터를 삭제합니다.");

@@ -14,9 +14,9 @@ class ItemsController {
     } catch (error) {
       console.log(error);
       // 에러 메세지에 따라 상태 코드가 다양할 때
-      if (error.message === "이름과 가격이 없다!") {
+      if (error.message === "이름과 가격을 입력해주세요.") {
         return res.status(403).json({ message: "이름과 가격을 입력해주세요." });
-      } else if (error.message === "타입이 틀렸다!") {
+      } else if (error.message === "알맞은 타입을 지정해주세요.") {
         return res.status(403).json({ message: "알맞은 타입을 지정해주세요." });
       } else if (error.message === "상품이 있다!") {
         return res.status(409).json({ message: "이미 존재하는 상품입니다." });
@@ -42,13 +42,16 @@ class ItemsController {
   // 상품 삭제
   deleteItem = async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.query;
 
       await this.itemsService.deleteItem(id);
+
       res.status(200).json({ message: "상품 삭제에 성공했습니다." });
     } catch (error) {
       console.log(error);
-      if (error.message === "상품이 그대로 있다!") {
+      if (error.message === "해당하는 상품이 없습니다.") {
+        return res.status(412).json({ message: "해당하는 상품이 없습니다." });
+      } else if (error.message === "상품 삭제를 취소했습니다.") {
         return res.status(403).json({ message: "상품 삭제를 취소했습니다." });
       }
       res.status(500).json({ errorMessage: "상품 삭제에 실패했습니다." });
@@ -69,6 +72,22 @@ class ItemsController {
         return res.status(403).json({ message: error.message });
       }
       res.status(500).json({ errorMessage: "상품 수정에 실패했습니다." });
+    }
+  };
+
+  // 상품 발주
+  orderItem = async (req, res) => {
+    try {
+      const { item_id } = req.params;
+      const { amount, state } = req.body;
+
+      await this.itemsService.orderItem(item_id, amount, state);
+    } catch (error) {
+      console.log(error);
+      if (error.message) {
+        return res.status(412).json({ message: error.message });
+      }
+      res.status(500).json({ errorMessage: error.message });
     }
   };
 }

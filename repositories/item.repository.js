@@ -1,14 +1,15 @@
-const { Item } = require("../models");
+const { sequelize } = require("sequelize");
+const { Item, Order_item } = require("../models");
 
 class ItemsRepository {
-  // 이름으로 아이템 찾기
-  findItemByName = async (name) => {
-    return await Item.findOne({ where: { name } });
-  };
-
   // 아이템 생성
   createItem = async (name, price, type) => {
     return await Item.create({ name, price, type });
+  };
+
+  // 이름으로 아이템 찾기
+  getItemByName = async (name) => {
+    return await Item.findOne({ where: { name } });
   };
 
   // pk로 아이템 조회
@@ -35,6 +36,19 @@ class ItemsRepository {
   updateItem = async (id, name, price) => {
     return await Item.update({ name, price }, { where: { id } });
   };
+
+  // 상품 발주
+  orderItem = async (item_id, amount, state) => {
+    return await Order_item.create({ item_id, amount, state });
+  };
+
+  // 상품 발주 상태 수정
+  // orderStatusChange = async () => {
+  //   const t = await sequelize.transaction;
+
+  //   try {
+  //   } catch (errer) {}
+  // };
 }
 
 module.exports = ItemsRepository;

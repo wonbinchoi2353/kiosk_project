@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
       },
       state: {
-        type: DataTypes.ENUM([0, 1, 2, 3]),
-        defaultValue: 0,
+        type: DataTypes.ENUM(["0", "1", "2", "3"]),
+        defaultValue: "0",
       },
       createdAt: {
         allowNull: false,

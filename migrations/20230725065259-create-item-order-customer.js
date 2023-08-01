@@ -12,7 +12,7 @@ module.exports = {
       item_id: {
         type: Sequelize.BIGINT,
       },
-      order_custormer_id: {
+      order_customer_id: {
         type: Sequelize.BIGINT,
       },
       amount: {

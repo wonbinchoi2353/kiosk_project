@@ -12,6 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Order_item, {
         foreignKey: "item_id",
       });
+      this.hasMany(models.Item_order_customer, {
+        foreignKey: "item_id",
+      });
+      this.belongsTo(models.Option, {
+        foreignKey: "option_id",
+        onDelete: "CASCADE",
+      });
     }
   }
   Item.init(

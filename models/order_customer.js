@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       state: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

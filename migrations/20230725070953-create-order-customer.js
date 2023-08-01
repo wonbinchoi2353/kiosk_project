@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       state: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

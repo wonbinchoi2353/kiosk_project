@@ -1,6 +1,6 @@
 const ItemsRepository = require("../repositories/item.repository");
 const IO = require("../readline/readline");
-const { itemType, orderItemState } = require("../constants/constant");
+const { itemType } = require("../constants/constant");
 
 class ItemsService {
   itemsRepository = new ItemsRepository();
@@ -42,7 +42,7 @@ class ItemsService {
 
   // 상품 삭제
   deleteItem = async (item_id) => {
-    const item = await this.itemsRepository.getItemsByPk((id = item_id));
+    const item = await this.itemsRepository.getItemsByPk(item_id);
 
     if (!item) {
       throw new Error("해당하는 상품이 없습니다.");
@@ -50,12 +50,12 @@ class ItemsService {
       // 입력값을 받아 '예'를 반환하면 아이템 삭제
       const input = await this.io.getInput();
       if (input === "예") {
-        await this.itemsRepository.deleteItem(id);
+        await this.itemsRepository.deleteItem(item_id);
       } else {
         throw new Error("상품 삭제를 취소했습니다.");
       }
     } else {
-      await this.itemsRepository.deleteItem(id);
+      await this.itemsRepository.deleteItem(item_id);
     }
   };
 
@@ -69,51 +69,7 @@ class ItemsService {
       throw new Error("알맞은 가격을 입력해주세요");
     }
 
-    await this.itemsRepository.updateItem((id = item_id), name, price);
-  };
-
-  // 상품 발주
-  orderItem = async (item_id, amount, state) => {
-    // 주문 상태 숫자로 변환
-    // { "ORDERED": 0, "PENDING": 1, "COMPLETED": 2, "CANCELED": 3 }
-    state = orderItemState[state].toString();
-
-    // 아이템 테이블과 발주 테이블의 id 이름이 다릅니다
-    const id = item_id;
-    // 아이템 테이블에서 상품 있는지 확인
-    const item = await this.itemsRepository.getItemsByPk(id);
-
-    if (!item) {
-      throw new Error("해당하는 상품이 없습니다.");
-    }
-
-    await this.itemsRepository.orderItem(item_id, amount, state);
-  };
-
-  // 발주 상태 수정
-  orderStatusChange = async (item_id, order_item_id, state) => {
-    state = orderItemState[state].toString();
-
-    let id;
-    const item = await this.itemsRepository.getItemsByPk((id = item_id));
-
-    if (!item) {
-      throw new Error("해당하는 상품이 없습니다.");
-    }
-
-    const orderItem = await this.itemsRepository.getItemsByOrderItemPk(
-      (id = order_item_id)
-    );
-
-    if (!orderItem) {
-      throw new Error("해당하는 상품 발주가 없습니다.");
-    }
-    try {
-      return await this.itemsRepository.orderStatusChange(order_item_id, state);
-    } catch (error) {
-      console.log(error);
-      throw new Error("상품 상태 수정에 실패했습니다.");
-    }
+    await this.itemsRepository.updateItem(item_id, name, price);
   };
 }
 

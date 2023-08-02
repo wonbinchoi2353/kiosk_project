@@ -11,12 +11,15 @@ module.exports = {
       },
       extra_price: {
         type: Sequelize.BIGINT,
+        defaultValue: 0,
       },
       shot_price: {
         type: Sequelize.BIGINT,
+        defaultValue: 0,
       },
       hot: {
         type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       createdAt: {
         allowNull: false,

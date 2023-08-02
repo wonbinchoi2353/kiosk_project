@@ -4,14 +4,10 @@ const router = express.Router();
 const ItemsController = require("../controllers/item.controller");
 const itemsController = new ItemsController();
 
-router.post("/items", itemsController.postItem);
+// 상품
+router.post("/item", itemsController.postItem);
 router.get("/items", itemsController.getItems);
-router.delete("/items/", itemsController.deleteItem);
-router.put("/items/:item_id", itemsController.updateItem);
-router.post("/items/:item_id/order_item", itemsController.orderItem);
-router.put(
-  "/items/:item_id/order_item/:order_item_id",
-  itemsController.orderStatusChange
-);
+router.delete("/item", itemsController.deleteItem);
+router.put("/item/:item_id", itemsController.updateItem);
 
 module.exports = router;

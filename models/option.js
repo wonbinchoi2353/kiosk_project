@@ -24,12 +24,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       extra_price: {
         type: DataTypes.BIGINT,
+        defaultValue: 0,
       },
       shot_price: {
         type: DataTypes.BIGINT,
+        defaultValue: 0,
       },
       hot: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
       createdAt: {
         type: DataTypes.DATE,

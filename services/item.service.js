@@ -7,7 +7,7 @@ class ItemsService {
   io = new IO();
 
   // 상품 생성
-  postItem = async (name, price, type) => {
+  postItem = async (name, option_id, price, type) => {
     if (!name || !price) {
       throw new Error("이름과 가격을 입력해주세요.");
     }
@@ -22,7 +22,7 @@ class ItemsService {
     const item = await this.itemsRepository.getItemByName(name);
 
     if (!item) {
-      await this.itemsRepository.createItem(name, price, type);
+      await this.itemsRepository.createItem(name, option_id, price, type);
     } else {
       // amount 확인
       // item.amount += 1;

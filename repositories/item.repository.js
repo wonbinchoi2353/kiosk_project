@@ -2,8 +2,8 @@ const { Item, Option } = require("../models");
 
 class ItemsRepository {
   // 아이템 생성
-  createItem = async (name, price, type) => {
-    return await Item.create({ name, price, type });
+  createItem = async (name, option_id, price, type) => {
+    return await Item.create({ name, option_id, price, type });
   };
 
   // 이름으로 아이템 찾기
